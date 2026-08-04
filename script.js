@@ -1,79 +1,150 @@
-let balance = 0;
+// ==========================
+// G-Coins v2 Main Script
+// ==========================
 
-let mining = false;
+// ---------- SIGN UP ----------
+function signup() {
+
+const fullname=document.getElementById("fullname").value;
+const email=document.getElementById("email").value;
+const username=document.getElementById("username").value;
+const password=document.getElementById("password").value;
+
+if(fullname==""||email==""||username==""||password==""){
+alert("Please fill in all required fields.");
+return;
+}
+
+const user={
+fullname:fullname,
+email:email,
+username:username,
+password:password,
+balance:0,
+referrals:0,
+mined:0
+};
+
+localStorage.setItem("gcoinsUser",JSON.stringify(user));
+
+alert("Account created successfully!");
+
+window.location="home.html";
+
+}
+
+// ---------- LOGIN ----------
+function login(){
+
+const username=prompt("Enter Username");
+const password=prompt("Enter Password");
+
+const user=JSON.parse(localStorage.getItem("gcoinsUser"));
+
+if(user==null){
+alert("No account found.");
+return;
+}
+
+if(username==user.username && password==user.password){
+
+alert("Welcome "+user.fullname);
+
+window.location="home.html";
+
+}else{
+
+alert("Invalid username or password.");
+
+}
+
+}
+
+// ---------- LOAD USER ----------
+function loadUser(){
+
+const user=JSON.parse(localStorage.getItem("gcoinsUser"));
+
+if(user==null) return;
+
+const balance=document.getElementById("balance");
+
+if(balance){
+
+balance.innerHTML=user.balance.toFixed(2)+" G-Coins";
+
+}
+
+}
+
+// ---------- MINING ----------
+let mining=false;
 
 function startMining(){
 
 if(mining){
 
-alert("Mining is already running.");
+alert("Mining already running.");
 
 return;
 
 }
 
-mining = true;
+mining=true;
 
 document.getElementById("status").innerHTML="🟢 Mining";
 
-let time = 30;
+let seconds=30;
 
-let timer = setInterval(function(){
+const timer=setInterval(function(){
 
-time--;
+seconds--;
 
-let minutes = Math.floor(time/60);
+let m=Math.floor(seconds/60);
 
-let seconds = time%60;
+let s=seconds%60;
 
 document.getElementById("timer").innerHTML=
 
-minutes+":"+
+m+":"+(s<10?"0":"")+s;
 
-(seconds<10?"0":"")+seconds;
-
-if(time<=0){
+if(seconds<=0){
 
 clearInterval(timer);
 
 mining=false;
 
-balance+=2;
+let user=JSON.parse(localStorage.getItem("gcoinsUser"));
 
-document.getElementById("balance").innerHTML=
+user.balance+=2;
 
-balance.toFixed(2)+" G-Coins";
+user.mined+=2;
 
-document.getElementById("earnings").innerHTML=
+localStorage.setItem("gcoinsUser",JSON.stringify(user));
 
-"+2 G-Coins";
+loadUser();
 
-document.getElementById("status").innerHTML=
+document.getElementById("status").innerHTML="✅ Completed";
 
-"✅ Claim Complete";
-
-document.getElementById("timer").innerHTML=
-
-"12:00:00";
-
-alert("Congratulations! You mined 2 G-Coins.");
+alert("+2 G-Coins Added!");
 
 }
 
 },1000);
 
 }
+
+// ---------- COPY REFERRAL ----------
 function copyReferral(){
 
-const input = document.getElementById("refLink");
+const input=document.getElementById("refLink");
 
 if(!input) return;
 
-input.select();
-input.setSelectionRange(0,99999);
-
 navigator.clipboard.writeText(input.value);
 
-alert("Referral link copied successfully!");
+alert("Referral Link Copied!");
 
 }
+
+window.onload=loadUser;
