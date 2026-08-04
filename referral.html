@@ -1,1 +1,83 @@
-<!doctype html><html><head><meta charset='utf-8'><title>referral</title><link rel='stylesheet' href='css/style.css'></head><body><header><h1>G-Coins - Referral</h1></header><p>Starter page for referral.</p><button onclick="alert('Coming soon')">Action</button><script src='js/app.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referral - G-Coins</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">👥</div>
+
+<h1>Invite Friends</h1>
+
+<p class="subtitle">
+Earn more G-Coins by inviting your friends.
+</p>
+
+<div class="card">
+
+<h2>Your Referral Code</h2>
+
+<h3 id="refCode">GC123456</h3>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>Your Referral Link</h2>
+
+<input
+type="text"
+id="refLink"
+value="https://g-coins.vercel.app/?ref=GC123456"
+readonly>
+
+<button class="btn" onclick="copyReferral()">
+📋 Copy Link
+</button>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>Friends Invited</h2>
+
+<h1>0 / 5</h1>
+
+<p>Invite 5 friends to unlock withdrawals.</p>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>Referral Bonus</h2>
+
+<h3>+2 G-Coins per successful referral</h3>
+
+</div>
+
+<br>
+
+<a href="home.html">
+<button class="btn2">
+Back Home
+</button>
+</a>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
