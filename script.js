@@ -36,14 +36,28 @@ window.location="home.html";
 // ---------- LOGIN ----------
 function login(){
 
-const username=prompt("Enter Username");
-const password=prompt("Enter Password");
+const username=document.getElementById("loginUsername").value;
+const password=document.getElementById("loginPassword").value;
 
 const user=JSON.parse(localStorage.getItem("gcoinsUser"));
 
 if(user==null){
 alert("No account found.");
 return;
+}
+
+if(username===user.username && password===user.password){
+
+alert("Welcome "+user.fullname);
+
+window.location="home.html";
+
+}else{
+
+alert("Incorrect username or password.");
+
+}
+
 }
 
 if(username==user.username && password==user.password){
