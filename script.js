@@ -63,3 +63,17 @@ alert("Congratulations! You mined 2 G-Coins.");
 },1000);
 
 }
+function copyReferral(){
+
+const input = document.getElementById("refLink");
+
+if(!input) return;
+
+input.select();
+input.setSelectionRange(0,99999);
+
+navigator.clipboard.writeText(input.value);
+
+alert("Referral link copied successfully!");
+
+}
