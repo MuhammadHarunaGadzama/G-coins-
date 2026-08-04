@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Create Account - G-Coins</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -24,48 +19,43 @@
 Join G-Coins and start mining today.
 </p>
 
-<form>
-
 <input
 type="text"
+id="fullname"
 placeholder="Full Name"
 required>
 
 <input
 type="email"
+id="email"
 placeholder="Email Address"
 required>
 
 <input
 type="text"
+id="username"
 placeholder="Username"
 required>
 
 <input
 type="password"
+id="password"
 placeholder="Password"
 required>
 
 <input
 type="text"
+id="referral"
 placeholder="Referral Code (Optional)">
 
-<button class="btn">
+<button class="btn" onclick="signup()">
 Create Account
 </button>
 
-</form>
-
-<br>
-
 <a href="index.html">
-
 <button class="btn2">
-
 Back to Login
-
 </button>
-
 </a>
 
 </div>
@@ -73,5 +63,4 @@ Back to Login
 <script src="script.js"></script>
 
 </body>
-
 </html>
